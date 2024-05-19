@@ -47,6 +47,7 @@ const ActiveFiltersList = (props: Props) => {
         >
           <small>Filters applied</small>
           <button
+            aria-label="Reset all filters"
             class={`btn btn-link btn-sm text-muted p-0 ps-1 ${styles.btnReset}`}
             onClick={() => props.resetFilters()}
           >

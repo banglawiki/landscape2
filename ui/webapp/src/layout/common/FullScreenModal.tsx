@@ -63,7 +63,7 @@ const FullScreenModal = (props: Props) => {
                 e.preventDefault();
                 closeModal();
               }}
-              aria-label="Close"
+              aria-label="Close modal"
             />
           </div>
           <div class="d-flex flex-column h-100 w-100">{props.children}</div>

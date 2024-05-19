@@ -26,6 +26,7 @@ const ItemDropdown = (props: Props) => {
     <>
       <div ref={setRef} class={`position-absolute ${styles.wrapper}`}>
         <button
+          aria-label="Item dropdown"
           type="button"
           class={`btn btn-md p-0 rounded-0 lh-1 ${styles.btn}`}
           onClick={(e) => {
@@ -44,6 +45,7 @@ const ItemDropdown = (props: Props) => {
         >
           <li>
             <button
+              aria-label="Get badge"
               class="dropdown-item"
               onClick={(e) => {
                 e.stopPropagation();

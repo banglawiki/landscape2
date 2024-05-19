@@ -22,6 +22,7 @@ const MobileFilters = (props: Props) => {
     <div>
       <div class="position-relative">
         <button
+          aria-label="Open filters sidebar"
           title="Filters"
           class={`position-relative btn btn-sm btn-secondary text-white btn-sm rounded-0 py-0 me-0 me-md-4 ${styles.filterBtn} btnIconMobile me-3`}
           onClick={() => setOpenSidebar(true)}

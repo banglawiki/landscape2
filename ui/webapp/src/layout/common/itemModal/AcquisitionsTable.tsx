@@ -72,6 +72,7 @@ const AcquisitionsTable = (props: Props) => {
         <Show when={visibleCollapsableOption()}>
           <div class="w-100 text-center">
             <button
+              aria-label={`${collapsed() ? 'Expand' : 'Collapse'} acquisitions list`}
               class={`btn btn-link btn-sm text-muted text-decoration-underline pe-0 ${styles.collapsedBtn}`}
               onClick={() => setCollapsed(!collapsed())}
             >

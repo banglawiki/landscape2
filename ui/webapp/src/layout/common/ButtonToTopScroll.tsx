@@ -32,6 +32,7 @@ const ButtonToTopScroll = () => {
     >
       <div class={`position-relative ${styles.btnTopWrapper}`}>
         <button
+          aria-label="Scroll to top"
           class={`btn btn-secondary btn-sm lh-1 text-white rounded-circle ${styles.btnTop}`}
           onClick={(e: MouseEvent) => {
             e.preventDefault();

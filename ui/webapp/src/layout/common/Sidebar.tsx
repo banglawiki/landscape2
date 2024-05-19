@@ -109,7 +109,7 @@ export const Sidebar = (props: Props) => {
                 type="button"
                 class={`ms-auto btn btn-sm btn-secondary rounded-0 lightText text-uppercase ${props.closeButtonClassName}`}
                 onClick={() => openStatusChange(false)}
-                aria-label="Close"
+                aria-label="Close sidebar"
               >
                 <Show when={isUndefined(props.closeButton)} fallback={<>{props.closeButton}</>}>
                   <>Close</>

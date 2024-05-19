@@ -139,6 +139,7 @@ const SearchbarSection = (props: Props) => {
             <small class={`fw-semibold me-2 ${styles.title}`}>{props.title || props.section!.title}</small>
             <Show when={activeFilters().length > 0}>
               <button
+                aria-label={`Reset ${props.section!.value} filter`}
                 class={`btn btn-sm btn-link text-muted lh-1 align-baseline p-0 ${styles.resetBtn}`}
                 onClick={() => props.resetFilter(props.section?.value as FilterCategory)}
               >

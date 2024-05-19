@@ -174,6 +174,7 @@ const Filters = (props: Props) => {
     <>
       <div class="position-relative">
         <button
+          aria-label="Open filters modal"
           title="Filters"
           class={`position-relative btn btn-sm btn-secondary text-white btn-sm rounded-0 py-0 me-0 me-lg-4 ${styles.filterBtn} btnIconMobile`}
           classList={{ disabled: disabledBtn() }}

@@ -47,6 +47,7 @@ const CollapsableText = (props: Props) => {
       <Show when={enabledCollapsable() && !collapsable()}>
         <div class={`position-absolute end-0 ${styles.btnExpand}`}>
           <button
+            aria-label="Show more button"
             class={`btn btn-sm btn-link fst-italic text-muted ${styles.btn}`}
             onClick={() => setCollapsable((prev) => !prev)}
           >

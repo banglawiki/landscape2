@@ -72,7 +72,7 @@ const Modal = (props: Props) => {
                     e.preventDefault();
                     closeModal();
                   }}
-                  aria-label="Close"
+                  aria-label="Close modal"
                 />
               </div>
             </Show>
@@ -88,7 +88,7 @@ const Modal = (props: Props) => {
                       e.preventDefault();
                       closeModal();
                     }}
-                    aria-label="Close"
+                    aria-label="Close modal"
                   >
                     <SVGIcon kind={SVGIconKind.Close} />
                   </button>

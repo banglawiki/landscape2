@@ -295,6 +295,7 @@ const EmbedModal = () => {
       <div class="me-2 position-relative">
         <button
           type="button"
+          aria-label="Embeddable view setup"
           class={`btn btn-md p-0 rounded-0 lh-1 ${styles.btn}`}
           onClick={(e) => {
             e.preventDefault();

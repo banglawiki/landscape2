@@ -72,6 +72,7 @@ const Menu = (props: Props) => {
                         return (
                           <button
                             id={`btn_${hash}`}
+                            aria-label={`${subtitle === 'undefined' ? 'None' : subtitle} section`}
                             title={subtitle}
                             class={`position-relative btn btn-sm btn-link rounded-0 p-0 ps-3 pe-2 py-1 text-start text-truncate text-capitalize ${styles.subcategoryBtn}`}
                             classList={{

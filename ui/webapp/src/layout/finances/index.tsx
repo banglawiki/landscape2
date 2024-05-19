@@ -378,6 +378,7 @@ const Finances = () => {
 
                     return (
                       <button
+                        aria-label={`Finances kind: ${kind}`}
                         title={`Finances kind: ${kind}`}
                         type="button"
                         class="btn btn-outline-primary rounded-0 fw-semibold"

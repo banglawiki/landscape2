@@ -57,6 +57,7 @@ const MobileGrid = (props: Props) => {
                   }}
                 >
                   <button
+                    aria-label={`Open ${item.name} details`}
                     class={`btn border-0 w-100 h-100 d-flex flex-row align-items-center ${styles.cardContent}`}
                     onClick={(e) => {
                       e.preventDefault();

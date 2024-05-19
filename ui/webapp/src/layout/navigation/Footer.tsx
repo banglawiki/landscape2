@@ -142,6 +142,7 @@ const Footer = () => {
       <Show when={window.navigator.onLine && !isUndefined(window.Osano)}>
         <div id="osano-cookie" class={`position-absolute ${styles.cookieBtnWrapper}`}>
           <button
+            aria-label="Open cookie settings"
             class={`btn btn-link btn-lg ${styles.cookieBtn}`}
             onClick={() => window.Osano.cm.showDrawer('osano-cm-dom-info-dialog-open')}
           >

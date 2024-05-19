@@ -578,6 +578,7 @@ const Explore = (props: Props) => {
           <div class="d-flex flex-row align-items-center mb-1 mb-md-0 w-100">
             <div class="d-block d-lg-none ms-0 ms-lg-4">
               <button
+                aria-label="Table of contents index"
                 title="Index"
                 class={`position-relative btn btn-sm btn-secondary text-white btn-sm rounded-0 py-0 me-1 me-lg-4 btnIconMobile ${styles.mobileToCBtn}`}
                 onClick={() => setOpenMenuStatus(true)}
@@ -628,6 +629,7 @@ const Explore = (props: Props) => {
                           return null;
                         return (
                           <button
+                            aria-label={`Group: ${group.name}`}
                             title={`Group: ${group.name}`}
                             class={`btn btn-outline-primary btn-sm rounded-0 fw-semibold text-nowrap ${styles.navLink}`}
                             classList={{
@@ -650,6 +652,7 @@ const Explore = (props: Props) => {
                     </For>
                     <Show when={viewMode() === ViewMode.Card}>
                       <button
+                        aria-label="All"
                         title="All"
                         class={`btn btn-outline-primary btn-sm rounded-0 fw-semibold text-nowrap ${styles.navLink}`}
                         classList={{
@@ -715,6 +718,7 @@ const Explore = (props: Props) => {
 
                   return (
                     <button
+                      aria-label={`Change view mode to ${mode}`}
                       title={`View mode: ${mode}`}
                       type="button"
                       class="btn btn-outline-primary rounded-0 fw-semibold"
@@ -747,6 +751,7 @@ const Explore = (props: Props) => {
                   <div class="d-flex flex-row">
                     <div class={`btn-group btn-group-sm ${styles.btnGroup}`}>
                       <button
+                        aria-label="Decrease zoom level"
                         title="Increase zoom level"
                         class="btn btn-outline-primary rounded-0 fw-semibold"
                         disabled={zoom() === 0}
@@ -757,6 +762,7 @@ const Explore = (props: Props) => {
                         <div class={styles.btnSymbol}>-</div>
                       </button>
                       <button
+                        aria-label="Decrease zoom level"
                         title="Decrease zoom level"
                         class="btn btn-outline-primary rounded-0 fw-semibold"
                         disabled={zoom() === 10}

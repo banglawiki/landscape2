@@ -170,6 +170,7 @@ const Grid = (props: Props) => {
                         <Show when={isSectionInGuide(props.categoryName, subcat.subcategoryName)}>
                           <div>
                             <A
+                              aria-label="Open guide section"
                               href={`${GUIDE_PATH}#${getNormalizedName({
                                 title: props.categoryName,
                                 subtitle: subcat.subcategoryName,
@@ -186,6 +187,7 @@ const Grid = (props: Props) => {
                         <Show when={isUndefined(gridItemsSize) || gridItemsSize !== 'large'}>
                           <div>
                             <button
+                              aria-label={`Open ${subcat.subcategoryName} items list on modal`}
                               onClick={() => {
                                 updateActiveSection({
                                   category: props.categoryName,

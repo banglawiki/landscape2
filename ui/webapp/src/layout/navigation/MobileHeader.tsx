@@ -48,6 +48,7 @@ const MobileHeader = (props: Props) => {
         <div class="d-flex flex-row align-items-center">
           <Show when={location.pathname !== STATS_PATH}>
             <button
+              aria-label="Open index menu"
               title="Index"
               class={`position-relative btn btn-sm btn-secondary text-white btn-sm rounded-0 p-0 ${styles.mobileBtn}`}
               onClick={() => openMenu(true)}
@@ -58,7 +59,7 @@ const MobileHeader = (props: Props) => {
         </div>
         <div>
           <Show when={!isUndefined(logo())}>
-            <button class="btn btn-link" onClick={() => scrollToTop(true)}>
+            <button aria-label="Scroll to top" class="btn btn-link" onClick={() => scrollToTop(true)}>
               <Image logo={logo()!} class={styles.stickyLogo} name="Landscape logo" height={35} />
             </button>
           </Show>

@@ -205,7 +205,6 @@ const Searchbar = (props: Props) => {
         class={`d-flex align-items-center overflow-hidden searchBar lh-base bg-white mx-0 mx-md-auto ${styles.searchBar} ${props.searchBarClass} search`}
       >
         <input
-          id="searchbar"
           ref={setInputEl}
           class={`flex-grow-1 ps-2 ps-md-3 border-0 shadow-none bg-transparent lh-base ${styles.input}`}
           type="text"

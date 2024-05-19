@@ -47,6 +47,7 @@ const Header = (props: Props) => {
         <Show when={!isUndefined(logo())}>
           <div class={`d-flex flex-row justify-content-between align-items-center me-3 ${styles.logoWrapper}`}>
             <button
+              aria-label="Open explore section"
               class="btn btn-link p-0 pe-3 me-2 me-xl-5"
               onClick={() => {
                 resetDefaultExploreValues();
@@ -71,6 +72,7 @@ const Header = (props: Props) => {
         >
           <div class="d-flex align-items-center">
             <button
+              aria-label="Open explore section"
               class={`btn btn-link position-relative text-uppercase fw-bold text-decoration-none p-0 ${styles.link}`}
               classList={{ activeLink: isExploreActive() }}
               onClick={() => {
@@ -90,6 +92,7 @@ const Header = (props: Props) => {
 
             <Show when={!isUndefined(window.baseDS.guide_summary) && !isEmpty(window.baseDS.guide_summary)}>
               <button
+                aria-label="Open guide section"
                 class={`btn btn-link position-relative text-uppercase fw-bold text-decoration-none p-0 ${styles.link}`}
                 classList={{ activeLink: isActive(GUIDE_PATH) }}
                 onClick={() => {
@@ -109,6 +112,7 @@ const Header = (props: Props) => {
 
             <Show when={props.statsVisible}>
               <button
+                aria-label="Open stats section"
                 class={`btn btn-link position-relative text-uppercase fw-bold text-decoration-none p-0 ${styles.link}`}
                 classList={{ activeLink: isActive(STATS_PATH) }}
                 onClick={() => {

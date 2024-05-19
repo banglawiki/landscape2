@@ -24,6 +24,7 @@ const ToCOption = (props: OptionProps) => {
   return (
     <>
       <button
+        aria-label={`Open ${props.option.title} details`}
         id={`btn_${props.option.id}`}
         class={`btn btn-link py-1 px-3 text-start w-100 rounded-0 position-relative text-truncate ${styles.btn} ${
           styles[`level-${props.level}`]

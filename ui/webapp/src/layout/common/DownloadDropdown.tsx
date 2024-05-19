@@ -93,6 +93,7 @@ const DownloadDropdown = () => {
     <div ref={setRef} class="ms-2 position-relative">
       <button
         type="button"
+        aria-label="Download files"
         class={`btn btn-md p-0 rounded-0 lh-1 ${styles.btn}`}
         onClick={(e) => {
           e.preventDefault();
@@ -115,6 +116,7 @@ const DownloadDropdown = () => {
           </li>
           <li>
             <button
+              aria-label="Download landscape in PDF format"
               class="dropdown-item py-3 border-top"
               onClick={(e) => {
                 e.stopPropagation();
@@ -150,6 +152,7 @@ const DownloadDropdown = () => {
           </li>
           <li>
             <button
+              aria-label="Download landscape in PNG format"
               class="dropdown-item py-3 border-top"
               onClick={(e) => {
                 e.stopPropagation();
@@ -187,6 +190,7 @@ const DownloadDropdown = () => {
           </li>
           <li>
             <button
+              aria-label="Download items in CSV format"
               class="dropdown-item py-3 border-top"
               onClick={(e) => {
                 e.stopPropagation();
@@ -217,6 +221,7 @@ const DownloadDropdown = () => {
           </li>
           <li>
             <button
+              aria-label="Download projects in CSV format"
               class="dropdown-item py-3 border-top"
               onClick={(e) => {
                 e.stopPropagation();

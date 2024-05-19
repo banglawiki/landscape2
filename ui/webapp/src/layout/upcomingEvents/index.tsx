@@ -50,6 +50,7 @@ const UpcomingEvents = () => {
           />
         </ExternalLink>
         <button
+          aria-label="Close upcoming event banner"
           class={`position-absolute btn btn-link btn-sm border p-0 bg-white rounded-circle ${styles.closeBtn}`}
           onClick={() => setHiddenEvent(true)}
         >
