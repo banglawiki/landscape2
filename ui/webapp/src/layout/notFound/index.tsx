@@ -18,7 +18,11 @@ const NotFound = () => {
         </div>
         <div class="h1 text-center mb-4">Error 404 - Page Not Found</div>
         <div class="h3 text-center mb-5">The page you were looking for wasn't found</div>
-        <A href={EXPLORE_PATH} class="btn btn-primary rounded-0 text-white btn-lg text-decoration-none">
+        <A
+          aria-label="Back to home"
+          href={EXPLORE_PATH}
+          class="btn btn-primary rounded-0 text-white btn-lg text-decoration-none"
+        >
           Back Home
         </A>
       </main>

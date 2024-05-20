@@ -72,7 +72,7 @@ const MobileHeader = (props: Props) => {
         <div class="container-fluid d-flex flex-column flex-lg-row align-items-center p-3 p-lg-4 mainPadding">
           <div class={`d-flex flex-row justify-content-between align-items-center ${styles.logoWrapper}`}>
             <Show when={!isUndefined(logo())}>
-              <A href={EXPLORE_PATH} class="me-4 me-xl-5">
+              <A aria-label="Open explore section" href={EXPLORE_PATH} class="me-4 me-xl-5">
                 <Image class={styles.logo} logo={logo()!} name="Landscape logo" height={48} />
               </A>
             </Show>
