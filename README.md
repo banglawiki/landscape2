@@ -27,13 +27,11 @@ You can check out how the generated landscapes look like by visiting the [CNCF l
 
 **Landscape2** is a CLI tool that generates static websites from the information available in the data sources provided. These data sources are passed to the tool via arguments, usually in the form of *urls* or *local paths*, and are as follows:
 
-- **Landscape data**. The landscape data file is a YAML file that describes the items that will be displayed in the landscape website. For more information, please see the [reference documentation](https://github.com/cncf/landscape2/blob/main/docs/config/data.yml).
+- **Landscape data**. The landscape data file is a YAML file that describes the items that will be displayed in the landscape website. For backwards compatibility reasons, this file *must* follow the format and conventions defined in the [CNCF *landscape.yml* file](https://github.com/cncf/landscape/blob/master/landscape.yml).
 
 - **Landscape settings**. The settings file is a YAML file that allows customizing some aspects of the generated landscape website, such as the logo, colors, how to group items or which ones should be featured. For more information about the settings file, please see the [reference documentation](https://github.com/cncf/landscape2/blob/main/docs/config/settings.yml).
 
 - **Landscape guide**. The guide file is a YAML file that defines the content of the guide that will be displayed on the landscape website. For more information, please see the [reference documentation](https://github.com/cncf/landscape2/blob/main/docs/config/guide.yml).
-
-- **Landscape games**. The games data file is a YAML file that defines the content of the games that will be displayed on the landscape website. For more information, please see the [reference documentation](https://github.com/cncf/landscape2/blob/main/docs/config/games.yml).
 
 - **Logos location**. Each landscape item *must* provide a valid relative reference to a logo image in SVG format in the landscape data file (item's `logo` field). The logos data source defines the location of those logos (base *url* or *local path*), so that the tool can get them as needed when processing the landscape items.
 
@@ -43,7 +41,7 @@ In addition to the information available in the landscape data file, the tool co
 
 - **GitHub**: a list of comma separated GitHub tokens with `public_repo` scope can be provided in the `GITHUB_TOKENS` environment variable. When these tokens are not provided no information from GitHub will be collected. If the expected number of items in the landscape is large it is recommended to provide more than one token to avoid hitting rate limits and speed up the collection of data (the concurrency of the process will be based on the number of tokens provided).
 
-- **Crunchbase**: a Crunchbase API key can be provided in the `CRUNCHBASE_API_KEY` environment variable. If this token is not provided no information from Crunchbase will be collected. Please note that landscape2 *needs access to the full Crunchbase API*, which requires an [Enterprise or Application license](https://data.crunchbase.com/docs/using-the-api).
+- **Crunchbase**: a Crunchbase API key can be provided in the `CRUNCHBASE_API_KEY` environment variable. If this token is not provided no information from Crunchbase will be collected.
 
 ## Installation
 
@@ -60,13 +58,13 @@ brew install cncf/landscape2/landscape2
 #### Install via shell script
 
 ```text
-curl --proto '=https' --tlsv1.2 -LsSf https://github.com/cncf/landscape2/releases/download/v0.11.0/landscape2-installer.sh | sh
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/cncf/landscape2/releases/download/v0.5.0/landscape2-installer.sh | sh
 ```
 
 #### Install via powershell script
 
 ```text
-irm https://github.com/cncf/landscape2/releases/download/v0.11.0/landscape2-installer.ps1 | iex
+irm https://github.com/cncf/landscape2/releases/download/v0.5.0/landscape2-installer.ps1 | iex
 ```
 
 ### Container image
@@ -75,7 +73,7 @@ The landscape2 CLI tool is also distributed in a [container image](https://galle
 
 ### Building from source
 
-You can build **landscape2** from the source by using [Cargo](https://rustup.rs), the Rust package manager. [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/) is required to build the wasm modules. [yarn](https://classic.yarnpkg.com/lang/en/docs/install/) is also required during the installation process to build the web application, which will be embedded into the `landscape2` binary as part of the build process.
+You can build **landscape2** from the source by using [Cargo](https://rustup.rs), the Rust package manager. [yarn](https://classic.yarnpkg.com/lang/en/docs/install/) is required during the installation process to build the web application, which will be embedded into the `landscape2` binary as part of the build process.
 
 ```text
 cargo install --git https://github.com/cncf/landscape2
@@ -178,10 +176,8 @@ INFO serve: landscape2::serve: http server running (press ctrl+c to stop)
 
 If you visit `http://127.0.0.1:8000` in your browser you should see the landscape you just created in action. Now you can iterate by editing the files in the `my-landscape` directory until your landscape is ready.
 
-One option to serve your landscape in production is to use a static site hosting service like [GitHub Pages](https://pages.github.com). In [this repository](https://github.com/tegioz/sample-landscape) you can find a full example of a landscape generated by the `landscape2 new` command that is automatically built and deployed to GitHub pages (using the `build` branch) on every commit to the `main` branch. Please note that the [sample workflow used to build and deploy](https://github.com/tegioz/sample-landscape/blob/main/.github/workflows/build.yml) requires **write** permissions.
-
 > [!NOTE]
-> The resulting website when building a landscape is a [single-page application](https://en.wikipedia.org/wiki/Single-page_application) that handles routing on the client side. This means that you'll need to configure your webserver to serve the `index.html` file for the SPA route paths (like '/guide', '/stats', etc). One way of doing this would be to serve that file when a non existent path is requested. The `serve` subcommand included in **landscape2** already handles this for us. In the GitHub pages example mentioned above, this is achieved by copying the content of the `index.html` file to the `404.html` file, which will be served when a non existent path is requested.
+> The resulting website when building a landscape is a [single-page application](https://en.wikipedia.org/wiki/Single-page_application) that handles routing on the client side. This means that you'll need to configure your webserver to serve the `index.html` file for the SPA route paths (like '/guide', '/stats', etc). One way of doing this would be to serve that file when a non existent path is requested. The `serve` subcommand included in **landscape2** already handles this for us.
 
 ### Validating data, settings and guide files
 
@@ -209,32 +205,6 @@ Some operations like collecting data from external sources or processing a lot o
 
 > [!NOTE]
 > In addition to the customization options available in the embed setup view, it's also possible to embed views using [iframe-resizer](https://github.com/davidjbradshaw/iframe-resizer). This feature can be enabled by adding `iframe-resizer=true` to the embed url ([demo](https://codepen.io/cynthiasg/pen/WNmQjje)).
-
-### Overlay
-
-**Landscape2** supports applying one or more data source files to an existing landscape at runtime. Any of those files can -and often will- be different than the ones used originally to build the landscape. This feature aims to be the building blocks of a preview system.
-
-Some examples of it in action (live demos!):
-
-- [Preview some changes in the settings file (like a Christmas edition theme)](https://landscape.cncf.io/?overlay-settings=https://raw.githubusercontent.com/tegioz/landscape2-overlay-tests/main/settings-christmas.yml)
-- [Check out how the CNCF landscape would look like using a 5 years old `landscape.yml` file (Helm was still in incubating!)](https://landscape.cncf.io/?overlay-data=https://raw.githubusercontent.com/cncf/landscape/6ff062c72b7229bbe60fee3aca5f8999624459f2/landscape.yml&overlay-logos=https://raw.githubusercontent.com/cncf/landscape/6ff062c72b7229bbe60fee3aca5f8999624459f2/hosted_logos&overlay-settings=https://raw.githubusercontent.com/tegioz/landscape2-overlay-tests/main/settings-5-years-ago.yml)
-
-To achieve this, the overlay redoes part of the landscape build process in the browser, reusing the same codebase packed as a WASM module.
-
-The overlay can be enabled by providing any of the following query parameters to the landscape url (they can be combined if needed):
-
-- `overlay-data`: *data file url*
-- `overlay-settings`: *settings file url*
-- `overlay-guide`: *guide file url*
-- `overlay-games`: *games data file url*
-- `overlay-logos`: *logos base url*
-
-> [!WARNING]
-> The overlay feature is still experimental and may not work as expected in all cases. Please report any issues you find!
-
-## Adopters
-
-A list of landscapes built using **landscape2** is available at [ADOPTERS.md](./ADOPTERS.md). Please consider adding yours!
 
 ## Contributing
 

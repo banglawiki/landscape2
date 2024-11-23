@@ -16,10 +16,8 @@ jobs:
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@master
         with:
-          toolchain: 1.81.0
+          toolchain: 1.75.0
           components: clippy, rustfmt
-      - name: Install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - name: Run clippy
         run: cargo clippy --all-targets --all-features -- --deny warnings
       - name: Run rustfmt
@@ -35,30 +33,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ./web/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - name: Install dependencies
-        working-directory: ./ui/webapp
+        working-directory: ./web
         run: yarn install --network-concurrency 1
       - name: Run prettier
-        working-directory: ./ui/webapp
+        working-directory: ./web
         run: yarn format:diff
       - name: Run eslint
-        working-directory: ./ui/webapp
-        run: yarn lint
-
-  lint-and-test-embed:
-    runs-on:
-      labels: ubuntu-latest-8-cores
-    env:
-      NODE_OPTIONS: --max_old_space_size=4096
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Install dependencies
-        working-directory: ./ui/embed
-        run: yarn install --network-concurrency 1
-      - name: Run prettier
-        working-directory: ./ui/embed
-        run: yarn format:diff
-      - name: Run eslint
-        working-directory: ./ui/embed
+        working-directory: ./web
         run: yarn lint

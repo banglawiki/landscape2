@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <% if (!isDev) { %>
+      {% if datasets.base.images.favicon.is_some() %}
+      <link rel="shortcut icon" href="{{ datasets.base.images.favicon.as_ref().unwrap() }}" />
+      <link rel="apple-touch-icon" href="{{ datasets.base.images.favicon.as_ref().unwrap() }}" />
+      {% endif %}
+      {% if datasets.base.images.open_graph.is_some() %}
+      <meta property="og:image" content="{{ datasets.base.images.open_graph.as_ref().unwrap() }}">
+      <meta name="twitter:image:src" content="{{ datasets.base.images.open_graph.as_ref().unwrap() }}" />
+      {% endif %}
+    <% } %>
+    <title>{{ datasets.base.foundation }} Landscape</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <% if (isDev) { %>
+    <script>
+      fetch("./static/data/base.json")
+      .then(res => res.json())
+      .then(data => window.baseDS = data);
+
+      fetch("./static/data/stats.json")
+      .then(res => res.json())
+      .then(data => window.statsDS = data);
+    </script>
+    <% } else { %>
+    <script>
+      window.baseDS = {{ datasets.base|json_compact|safe }};
+      window.statsDS = {{ datasets.stats|json_compact|safe }};
+    </script>
+    <% } %>
+    <% if (!isDev) { %>
+      {% set gtm_container_id = analytics|get_gtm_container_id %}
+      {% if gtm_container_id.is_some() %}
+      <!-- Google Tag Manager -->
+      <script defer data-container-id="{{ gtm_container_id.as_ref().unwrap() }}" src="assets/gtm.js"></script>
+      <!-- End Google Tag Manager -->
+      {% endif %}
+    <% } %>
+  </head>
+  <body>
+    <% if (!isDev) { %>
+      {% if gtm_container_id.is_some() %}
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ gtm_container_id.unwrap() }}"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+      {% endif %}
+    <% } %>
+    <div id="landscape"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>
+
+
