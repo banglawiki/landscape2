@@ -125,7 +125,7 @@ const Footer = () => {
                 Powered by{' '}
                 <ExternalLink
                   class="p-0 fw-semibold text-white text-underline"
-                  href="https://github.com/cncf/landscape2"
+                  href="https://github.com/banglawiki/bangladesh-landscape"
                 >
                   CNCF interactive landscapes generator
                 </ExternalLink>
